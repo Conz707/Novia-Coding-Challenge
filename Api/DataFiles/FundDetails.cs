@@ -11,7 +11,7 @@ namespace Api.DataFiles
 
         public bool Active { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
         public decimal CurrentUnitPrice { get; set; }
 
         //[JsonProperty(PropertyName = "Current Unit Price")]
