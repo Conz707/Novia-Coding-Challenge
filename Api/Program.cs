@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Api
 {
@@ -19,7 +20,12 @@ namespace Api
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+
+            .ConfigureLogging((hostingContext, builder) =>
+            {
+                builder.AddFile("Logs/FundsApi-{Date}.txt");
+            })
+            .UseStartup<Startup>()
+            .Build();
     }
 }
