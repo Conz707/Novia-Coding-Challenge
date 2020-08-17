@@ -22,7 +22,7 @@
 
 
         [HttpGet("api/GetFundByMarketCode")]
-        public IActionResult GetFundByMarketCode(string MarketCode)
+        public IActionResult GetFundByMarketCode(string marketCode)
         {
             _log.LogInformation($"[API Request] GetFundByMarketCode");
 
@@ -30,12 +30,12 @@
 
             var funds = JsonConvert.DeserializeObject<List<FundDetails>>(file);
 
-            if (!string.IsNullOrEmpty(MarketCode))
+            if (!string.IsNullOrEmpty(marketCode))
             {
-                _log.LogInformation($"[API Request] GetFundByMarketCode with MarketCode == {MarketCode}");
+                _log.LogInformation($"[API Request] GetFundByMarketCode with MarketCode == {marketCode}");
                 try
                 {
-                    return this.Ok(funds.Single(x => x.MarketCode == MarketCode));
+                    return this.Ok(funds.Single(x => x.MarketCode == marketCode));
                 }
                 catch (Exception)
                 {
@@ -50,7 +50,7 @@
 
 
         [HttpGet("api/GetFundsByFundManager")]
-        public IActionResult GetFundsByFundManager(string Manager)
+        public IActionResult GetFundsByFundManager(string manager)
         {
             _log.LogInformation($"[API Request] GetFundsByFundManager ");
             var file = System.IO.File.ReadAllTextAsync("./DataFiles/funds.json").Result;
@@ -58,10 +58,10 @@
             var funds = JsonConvert.DeserializeObject<List<FundDetails>>(file);
 
 
-            if (!string.IsNullOrEmpty(Manager))
+            if (!string.IsNullOrEmpty(manager))
             {
-                _log.LogInformation($"[API Request] GetFundsByFundManager - Manager == {Manager}");
-                return this.Ok(funds.Where(x => x.FundManager == Manager));
+                _log.LogInformation($"[API Request] GetFundsByFundManager - Manager == {manager}");
+                return this.Ok(funds.Where(x => x.FundManager == manager));
             }
 
             _log.LogInformation($"[API Request] GetFundsByFundManager - MISSING MANAGER INPUT");
