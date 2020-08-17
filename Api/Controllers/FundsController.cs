@@ -39,7 +39,7 @@
                 }
                 catch (Exception)
                 {
-                    _log.LogInformation($"[API Request] GetFundByMarketCode - INVALID MARKET CODElocal");
+                    _log.LogInformation($"[API Request] GetFundByMarketCode - INVALID MARKET CODE");
                     return this.StatusCode(400);
                 }
             }
